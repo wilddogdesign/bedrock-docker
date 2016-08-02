@@ -25,4 +25,7 @@ else
   echo >&2 "Wordpress installed. Carrying on..."
 fi
 
+echo >&2 "Activating $WP_THEME..."
+wp theme activate $WP_THEME --allow-root
+
 cd /

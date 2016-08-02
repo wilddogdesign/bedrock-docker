@@ -55,6 +55,14 @@ echo >&2 "Installing dependencies..."
 composer up --no-dev --prefer-dist --no-interaction --optimize-autoloader
 echo >&2 "Done! Dependencies have been installed"
 
+cd /var/www/web/app/themes
+
+if ! [ -d "$WP_THEME" ]; then
+    echo >&2 "Theme doesn't exist. Downloading..."
+    git clone https://github.com/timber/starter-theme.git $WP_THEME
+    echo >&2 "Done!"
+fi
+
 cd /
 
 /etc/init.d/php7.0-fpm start
