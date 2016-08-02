@@ -44,6 +44,9 @@ RUN LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php && apt-get update
 # Install php
 RUN apt-get install -y php7.0-cli php7.0-common php7.0 php7.0-mysql php7.0-fpm php7.0-curl php7.0-gd php7.0-bz2 php7.0-xml
 
+# Install jq to modify composer.json
+RUN apt-get install jq -y
+
 WORKDIR /
 
 # Install dockerize
