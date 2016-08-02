@@ -39,11 +39,13 @@ if ! [ -e .env.example -a -e composer.json ]; then
 
     # sed -i "s|generateme|`openssl rand -base64 64`|g" .env
     echo >&2 "Adding Timber to composer requires"
-    jq '.require |= .+ { "wpackagist-plugin/timber-library": "1.1.1" }' composer.json > newcomposer.json && mv newcomposer.json composer.json
+    jq '.require |= .+ { "wpackagist-plugin/timber-library": "^1.1.1" }' composer.json > newcomposer.json && mv newcomposer.json composer.json
+    jq '.require |= .+ { "wpackagist-plugin/meta-box": "^4.8.7" }' composer.json > newcomposer.json && mv newcomposer.json composer.json
     echo >&2 "Added Timber to composer requires"
 
     echo >&2 "Amending Timber to must use plugins"
     jq '.extra ."installer-paths" ."web/app/mu-plugins/{$name}/" |= .+ ["wpackagist-plugin/timber-library"]' composer.json > newcomposer.json && mv newcomposer.json composer.json
+    jq '.extra ."installer-paths" ."web/app/mu-plugins/{$name}/" |= .+ ["wpackagist-plugin/meta-box"]' composer.json > newcomposer.json && mv newcomposer.json composer.json
     echo >&2 "Amended Timber to must use plugins"
 
     echo >&2 "Done!"
