@@ -41,10 +41,10 @@ if ! [ -e .env.example -a -e composer.json ]; then
 
     echo >&2 "Amending Timber to must use plugins"
     jq '.extra ."installer-paths" ."web/app/mu-plugins/{$name}/" |= .+ ["wpackagist-plugin/timber-library"]' composer.json > newcomposer.json && mv newcomposer.json composer.json
-    jq '.extra ."installer-paths" ."web/app/mu-plugins/{$name}/" |= .+ ["wpackagist-plugin/meta-box"]' composer.json > newcomposer.json && mv newcomposer.json composer.json
+    jq '.extra ."installer-paths" ."web/app/mu-plugins/{$name}/" |= .+ ["wpackagist-plugin/cmb2"]' composer.json > newcomposer.json && mv newcomposer.json composer.json
     echo >&2 "Amended Timber to must use plugins"
 
-    composer require wpackagist-plugin/timber-library wpackagist-plugin/meta-box --prefer-dist --optimize-autoloader
+    composer require wpackagist-plugin/timber-library wpackagist-plugin/cmb2 --prefer-dist --optimize-autoloader
 
     echo >&2 "Done!"
 fi
