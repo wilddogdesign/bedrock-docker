@@ -29,14 +29,6 @@ if ! [ -e .env.example -a -e composer.json ]; then
     git remote add -t \* -f origin https://github.com/roots/bedrock.git
     git checkout master
 
-    cp .env.example .env
-
-    sed -i "s|database_name|$MYSQL_DATABASE|g" .env
-    sed -i "s|database_user|$MYSQL_USER|g" .env
-    sed -i "s|database_password|$MYSQL_PASSWORD|g" .env
-    sed -i "s|database_host|$MYSQL_LOCAL_HOST|g" .env
-    sed -i "s|http://example.com|https://$WP_HOME|g" .env
-
     # sed -i "s|generateme|`openssl rand -base64 64`|g" .env
 
     echo >&2 "Amending Timber to must use plugins"
@@ -47,6 +39,18 @@ if ! [ -e .env.example -a -e composer.json ]; then
     composer require wpackagist-plugin/timber-library wpackagist-plugin/cmb2 --prefer-dist --optimize-autoloader
 
     echo >&2 "Done!"
+fi
+
+if ! [ -e .env ]; then
+    echo >&2 "Creating environment file..."
+
+    cp .env.example .env
+
+    sed -i "s|database_name|$MYSQL_DATABASE|g" .env
+    sed -i "s|database_user|$MYSQL_USER|g" .env
+    sed -i "s|database_password|$MYSQL_PASSWORD|g" .env
+    sed -i "s|database_host|$MYSQL_LOCAL_HOST|g" .env
+    sed -i "s|http://example.com|https://$WP_HOME|g" .env
 fi
 
 echo >&2 "Installing dependencies..."
