@@ -7,8 +7,8 @@ sed -i "s|_WP_HOME_|$WP_HOME|g" /etc/nginx/nginx.conf
 sed -i "s|_ENV_|development|g" /etc/nginx/nginx.conf
 
 # Set www-data local permissions (STRICTLY FOR LOCAL DEV)
-usermod -u 1000 www-data
-usermod -G staff www-data
+# usermod -u 1000 www-data
+# usermod -G staff www-data
 
 # Amend php config
 sed -i "s|listen = /run/php/php7.0-fpm.sock|listen = 9000|g" /etc/php/7.0/fpm/pool.d/www.conf

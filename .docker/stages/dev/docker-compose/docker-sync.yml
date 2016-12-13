@@ -1,0 +1,15 @@
+options:
+  compose-file-path: './docker-compose.yml'
+  compose-dev-file-path: './docker-compose.development.yml'
+  verbose: true
+syncs:
+  PROJECT_NAME-sync:
+    src: './bedrock'
+    dest: '/var/www'
+    sync_strategy: 'unison'
+    sync_excludes_type: 'Name'
+
+    sync_user: 'www-data'
+    sync_userid: '1001'
+    sync_group: 'www-data'
+    sync_groupid: '1002'

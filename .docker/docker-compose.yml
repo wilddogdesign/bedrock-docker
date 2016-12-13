@@ -1,0 +1,56 @@
+version: "2"
+
+services:
+
+  bedrock:
+    image: bedrock
+    build:
+      context: .
+      dockerfile: .docker/bedrock/bedrock.dockerfile
+    depends_on:
+      - db
+      - cache
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - PROJECT_NAME-network
+
+  db:
+    image: mariadb
+    volumes:
+      - PROJECT_NAME-db:/var/lib/mysql
+    expose:
+      - "3306"
+    networks:
+      - PROJECT_NAME-network
+
+  cache:
+    image: redis
+    volumes:
+      - PROJECT_NAME-cache:/var/lib/redis
+    expose:
+      - "6379"
+    networks:
+      - PROJECT_NAME-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    links:
+      - db:mysql
+    networks:
+      - PROJECT_NAME-network
+
+networks:
+  PROJECT_NAME-network:
+    driver: bridge
+
+volumes:
+  PROJECT_NAME-db:
+    external: true
+  PROJECT_NAME-cache:
+    external: true

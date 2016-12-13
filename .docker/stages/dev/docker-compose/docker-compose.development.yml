@@ -6,7 +6,7 @@ services:
     volumes:
       - .certs:/etc/nginx/certs
     volumes_from:
-      - container:bedrock-sync:rw # will be mounted on /var/www
+      - container:PROJECT_NAME-sync:rw # will be mounted on /var/www
     env_file:
       - .docker/stages/dev/env/db.development.env
       - .docker/stages/dev/env/bedrock.development.env
@@ -18,5 +18,5 @@ services:
     env_file: .docker/stages/dev/env/db.development.env
 
 volumes:
-  bedrock-sync:
+  PROJECT_NAME-sync:
     external: true

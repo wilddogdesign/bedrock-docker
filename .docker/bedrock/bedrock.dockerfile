@@ -28,7 +28,7 @@ RUN rm /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
 
 # Copy in nGinx config
-COPY .docker/dev/nginx/bedrock.nginx.conf /tmp/nginx.conf
+COPY .docker/stages/dev/nginx/bedrock.nginx.conf /tmp/nginx.conf
 RUN mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 # Define mountable directories.
@@ -70,10 +70,10 @@ RUN pip install ngxtop
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 RUN sed -i "/# server_name_in_redirect off;/ a\fastcgi_cache_path /var/run/nginx levels=1:2 keys_zone=drm_custom_cache:16m max_size=1024m inactive=60m;" /etc/nginx/nginx.conf
 
-COPY .docker/dev/bedrock/entry-point.sh /tmp/entry-point.sh
+COPY .docker/bedrock/entry-point.sh /tmp/entry-point.sh
 RUN mv /tmp/entry-point.sh /entry-point.sh
 RUN chmod +x entry-point.sh
-COPY .docker/dev/bedrock/init-wordpress.sh /tmp/init-wordpress.sh
+COPY .docker/bedrock/init-wordpress.sh /tmp/init-wordpress.sh
 RUN mv /tmp/init-wordpress.sh /init-wordpress.sh
 RUN chmod +x init-wordpress.sh
 
