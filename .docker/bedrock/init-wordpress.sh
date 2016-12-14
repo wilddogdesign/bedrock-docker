@@ -1,6 +1,6 @@
 #!/bin/bash
-USER=admin
-USER_PASS=`openssl rand -base64 8`
+# USER=admin
+# USER_PASS=`openssl rand -base64 8`
 
 cd /var/www/web
 

@@ -44,13 +44,28 @@ fi
 if ! [ -e .env ]; then
     echo >&2 "Creating environment file..."
 
-    cp .env.example .env
+    cat > .env <<EOF
+DB_NAME=$MYSQL_DATABASE
+DB_USER=$MYSQL_USER
+DB_PASSWORD=$MYSQL_PASSWORD
+DB_HOST=$MYSQL_LOCAL_HOST
 
-    sed -i "s|database_name|$MYSQL_DATABASE|g" .env
-    sed -i "s|database_user|$MYSQL_USER|g" .env
-    sed -i "s|database_password|$MYSQL_PASSWORD|g" .env
-    sed -i "s|database_host|$MYSQL_LOCAL_HOST|g" .env
-    sed -i "s|http://example.com|https://$WP_HOME|g" .env
+# WP_CACHE=true
+
+WP_ENV=$WP_ENV
+WP_HOME=$WP_HOME
+WP_SITEURL=$WP_SITEURL
+
+AUTH_KEY='$(openssl rand -base64 48)'
+SECURE_AUTH_KEY='$(openssl rand -base64 48)'
+LOGGED_IN_KEY='$(openssl rand -base64 48)'
+NONCE_KEY='$(openssl rand -base64 48)'
+AUTH_SALT='$(openssl rand -base64 48)'
+SECURE_AUTH_SALT='$(openssl rand -base64 48)'
+LOGGED_IN_SALT='$(openssl rand -base64 48)'
+NONCE_SALT='$(openssl rand -base64 48)'
+EOF
+
 fi
 
 echo >&2 "Installing dependencies..."
@@ -65,6 +80,19 @@ if ! [ -d "$WP_THEME" ]; then
     cd $WP_THEME && \
     rm -Rf tests/ bin/ .git/ static/site.js .gitignore .travis.yml phpunit.xml composer.json composer.lock
     echo >&2 "Done!"
+fi
+
+echo >&2 "Linking in static assets..."
+cd /var/www/web/app/themes/$WP_THEME/static
+
+if ! [ -e css ]; then
+    ln -s /var/templates/dist/assets/css
+fi
+if ! [ -e js ]; then
+    ln -s /var/templates/dist/assets/js
+fi
+if ! [ -e icons ]; then
+    ln -s /var/templates/dist/assets/icons
 fi
 
 cd /

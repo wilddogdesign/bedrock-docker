@@ -3,13 +3,24 @@ options:
   compose-dev-file-path: './docker-compose.development.yml'
   verbose: true
 syncs:
-  PROJECT_NAME-sync:
+  PROJECT_NAME-app-sync:
     src: './bedrock'
     dest: '/var/www'
     sync_strategy: 'unison'
     sync_excludes_type: 'Name'
+    sync_user: www-data
+    sync_userid: 82
+    sync_host_ip: 127.0.0.1
+    sync_host_port: 10872
 
-    sync_user: 'www-data'
-    sync_userid: '1001'
-    sync_group: 'www-data'
-    sync_groupid: '1002'
+    sync_excludes: ['.DS_Store', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/', 'composer.json' , 'bower.json', 'package.json', 'Gruntfile*', 'bower_components/', 'node_modules/', 'jspm_packages/', '.gitignore', '.git/', '*.coffee', '*.scss', '*.sass']
+
+  PROJECT_NAME-templates-sync:
+    src: './templates'
+    dest: '/var/templates'
+    sync_strategy: 'unison'
+    sync_excludes_type: 'Name'
+    sync_host_ip: 127.0.0.1
+    sync_host_port: 10873
+
+    sync_excludes: ['.DS_Store', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/', 'composer.json' , 'bower.json', 'package.json', 'Gruntfile*', 'bower_components/', 'node_modules/', 'jspm_packages/', '.gitignore', '.git/', '*.coffee', '*.scss', '*.sass']

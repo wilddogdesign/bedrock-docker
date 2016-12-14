@@ -33,7 +33,7 @@ INFO := @bash -c '\
 
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: deploy dev launch setup update-templates
+.PHONY: build deploy dev launch setup update-templates
 
 setup:
 ifeq ($(wildcard $(ROOT_DIR)/$(COMPOSE_FILE)),)
@@ -98,9 +98,14 @@ update-templates:
 	${INFO} "Building project"
 	@ cd $(ROOT_DIR)/templates && npm run build
 
+# build:
+# 	${INFO} "Creating images..."
+# 	@ docker-compose -f $(COMPOSE_FILE) -f $(DEV_COMPOSE_FILE) build
+
 launch:
 	${INFO} "Launching..."
-	@ docker-compose -f $(COMPOSE_FILE) -f $(DEV_COMPOSE_FILE) up
+	@ docker-sync-stack start
+	# @ docker-compose -f $(COMPOSE_FILE) -f $(DEV_COMPOSE_FILE) up
 
 dev: | update-templates launch
 
