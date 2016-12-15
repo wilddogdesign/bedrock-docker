@@ -10,22 +10,22 @@ if ! $(wp core is-installed --allow-root); then
                  --dbuser=_MYSQL_USER_ \
                  --dbpass=_MYSQL_PASSWORD_ \
                  --allow-root
-  wp core install --url=http://_WP_HOME_/cms/ \
-                  --title=Bedrock \
-                  --admin_user=$USER \
-                  --admin_password=$USER_PASS \
-                  --admin_email=admin@example.com \
+  wp core install --url=https://_WP_HOME_/cms/ \
+                  --title=_WP_TITLE_ \
+                  --admin_user=_WP_USER_ \
+                  --admin_password=_WP_PASS_ \
+                  --admin_email=_WP_EMAIL_ \
                   --allow-root
   echo >&2 "Done!"
   echo >&2 "========================="
-  echo >&2 "User: $USER"
-  echo >&2 "Pass: $USER_PASS"
+  echo >&2 "User: _WP_USER_"
+  echo >&2 "Pass: _WP_PASS_"
   echo >&2 "========================="
 else
   echo >&2 "Wordpress installed. Carrying on..."
 fi
 
-echo >&2 "Activating $WP_THEME..."
-wp theme activate $WP_THEME --allow-root
+echo >&2 "Activating _WP_THEME_..."
+wp theme activate _WP_THEME_ --allow-root
 
 cd /

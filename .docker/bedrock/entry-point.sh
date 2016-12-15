@@ -4,7 +4,7 @@ set -e
 
 # Amend nGinx config
 sed -i "s|_WP_HOME_|$WP_HOME|g" /etc/nginx/nginx.conf
-sed -i "s|_ENV_|development|g" /etc/nginx/nginx.conf
+sed -i "s|_ENV_|$WP_ENV|g" /etc/nginx/nginx.conf
 
 # Set www-data local permissions (STRICTLY FOR LOCAL DEV)
 # usermod -u 1000 www-data
@@ -16,6 +16,11 @@ sed -i "s|;listen.allowed_clients|listen.allowed_clients|g" /etc/php/7.0/fpm/poo
 
 # Amend Wordpress init script
 sed -i "s|_WP_HOME_|$WP_HOME|g" /init-wordpress.sh
+sed -i "s|_WP_TITLE_|$WP_TITLE|g" /init-wordpress.sh
+sed -i "s|_WP_THEME_|$WP_THEME|g" /init-wordpress.sh
+sed -i "s|_WP_USER_|$WP_USER|g" /init-wordpress.sh
+sed -i "s|_WP_PASS_|$WP_PASS|g" /init-wordpress.sh
+sed -i "s|_WP_EMAIL_|$WP_EMAIL|g" /init-wordpress.sh
 sed -i "s|_MYSQL_DATABASE_|$MYSQL_DATABASE|g" /init-wordpress.sh
 sed -i "s|_MYSQL_USER_|$MYSQL_USER|g" /init-wordpress.sh
 sed -i "s|_MYSQL_PASSWORD_|$MYSQL_PASSWORD|g" /init-wordpress.sh
