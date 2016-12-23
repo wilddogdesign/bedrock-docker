@@ -7,6 +7,7 @@ Prerequisites
 For this set-up to function, you will need these things installed:
 - Docker
 - docker-sync
+- unison (`brew install unison`)
 - Node.js with jspm, bower and yarn installed globally
 
 Setting up
