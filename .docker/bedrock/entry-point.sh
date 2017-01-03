@@ -87,6 +87,9 @@ if ! [ -d "$WP_THEME" ]; then
     echo >&2 "Done!"
 fi
 
+echo .&2 "Changing permissions..."
+chown -R www-data:www-data /var/www
+
 echo >&2 "Linking in static assets..."
 cd /var/www/web/app/themes/$WP_THEME/static
 
