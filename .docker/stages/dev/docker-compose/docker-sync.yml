@@ -14,7 +14,7 @@ syncs:
     sync_host_ip: '127.0.0.1'
     sync_host_port: 20872
 
-    sync_excludes: ['.DS_Store', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/', 'composer.json' , 'bower.json', 'package.json', 'Gruntfile*', 'bower_components/', 'node_modules/', 'jspm_packages/', '.gitignore', '.git/', '*.coffee', '*.scss', '*.sass']
+    sync_excludes: ['.DS_Store', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/', 'composer.json' , 'bower.json', 'package.json', 'Gruntfile*', 'bower_components/', 'node_modules/', 'jspm_packages/', '.gitignore', '.git/*', '*.coffee', '*.scss', '*.sass']
 
   PROJECT_NAME-templates-sync:
     src: './templates'
@@ -27,4 +27,4 @@ syncs:
     sync_host_ip: '127.0.0.1'
     sync_host_port: 20873
 
-    sync_excludes: ['.DS_Store', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/', 'composer.json' , 'bower.json', 'package.json', 'Gruntfile*', 'bower_components/', 'node_modules/', 'jspm_packages/', '.gitignore', '.git/', '*.coffee', '*.scss', '*.sass']
+    sync_excludes: ['.DS_Store', 'Gemfile.lock', 'Gemfile', 'config.rb', '.sass-cache/', 'sass/', 'sass-cache/', 'composer.json' , 'bower.json', 'package.json', 'Gruntfile*', 'bower_components/', 'node_modules/', 'jspm_packages/', '.gitignore', '.git/*', '*.coffee', '*.scss', '*.sass']
