@@ -1,0 +1,14 @@
+{
+  "name": "deploy",
+  "version": "0.0.1",
+  "description": "Deployment routine for Bedrock using Flightplan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wild Dog Design",
+  "license": "ISC",
+  "devDependencies": {
+    "flightplan": "^0.6.14"
+  }
+}
