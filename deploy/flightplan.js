@@ -107,7 +107,7 @@ plan.remote('deploy', remote => {
   remote.log('Create needed folders');
   remote.exec(`mkdir -p ${remote.runtime.projectRoot}/shared ${remote.runtime.projectRoot}/releases/${versionDir}`);
   remote.log('Extract files');
-  remote.exec(`tar -xzvf ${remoteTmpFolder}/${versionDir}.tar.gz -C ${remote.runtime.projectRoot}/releases/${versionDir} && rm -f ${remoteTmpFolder}/${versionDir}.tar.gz`);
+  remote.exec(`tar -xzvf ${remoteTmpFolder}/${versionDir}.tar.gz -C ${remote.runtime.projectRoot}/releases/${versionDir} --exclude="._*" && rm -f ${remoteTmpFolder}/${versionDir}.tar.gz`);
   remote.log('Create linked folders');
   linkedDirs.forEach(dir => {
     remote.exec(`rm -Rf ${remote.runtime.projectRoot}/releases/${versionDir}/${dir}`);
