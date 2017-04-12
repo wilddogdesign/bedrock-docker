@@ -41,6 +41,16 @@ if ! [ -e .env.example -a -e composer.json ]; then
     jq '.extra ."installer-paths" ."web/app/mu-plugins/{$name}/" |= .+ ["wpackagist-plugin/cmb2"]' composer.json > newcomposer.json && mv newcomposer.json composer.json
     echo >&2 "Amended Timber to must use plugins"
 
+    echo >&2 "Adding additional rules to Bedrock's .gitignore"
+    cat <<EOT >> .gitignore
+
+#Additional rules to be extra-sure
+!web/app/mu-plugins/disallow-indexing.php
+!web/app/mu-plugins/register-theme-directory.php
+!web/app/mu-plugins/bedrock-autoloader.php
+EOT
+    echo >&2 "Additional rules added"
+
     composer require wpackagist-plugin/timber-library wpackagist-plugin/cmb2 --prefer-dist --optimize-autoloader
 
     echo >&2 "Done!"
