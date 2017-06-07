@@ -6,8 +6,7 @@ options:
 syncs:
   PROJECT_NAME-app-sync:
     src: './bedrock'
-    dest: '/var/www'
-    sync_strategy: 'unison'
+    sync_strategy: 'native_osx'
     sync_excludes_type: 'Name'
     sync_userid: '33'
     notify_terminal: true
@@ -18,8 +17,7 @@ syncs:
 
   PROJECT_NAME-templates-sync:
     src: './templates'
-    dest: '/var/templates'
-    sync_strategy: 'unison'
+    sync_strategy: 'native_osx'
     sync_excludes_type: 'Name'
     sync_userid: '33'
     notify_terminal: true

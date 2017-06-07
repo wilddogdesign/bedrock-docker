@@ -5,8 +5,8 @@ services:
   bedrock:
     volumes:
       - .certs:/etc/nginx/certs
-      - PROJECT_NAME-app-sync:/var/www:rw # will be mounted on /var/www
-      - PROJECT_NAME-templates-sync:/var/templates:rw # will be mounted on /var/templates
+      - PROJECT_NAME-app-sync:/var/www:nocopy # will be mounted on /var/www
+      - PROJECT_NAME-templates-sync:/var/templates:nocopy # will be mounted on /var/templates
     env_file:
       - .docker/stages/dev/env/db.development.env
       - .docker/stages/dev/env/bedrock.development.env
