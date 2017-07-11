@@ -6,7 +6,7 @@ require 'capistrano/deploy'
 
 # Load tasks from gems
 require 'capistrano/composer'
-# require 'capistrano/npm'
+ require 'capistrano/nvm'
 require 'capistrano/git-submodule-strategy'
 require 'airbrussh/capistrano'
 
