@@ -47,6 +47,17 @@ RUN apt-get install -y php7.0-cli php7.0-common php7.0 php7.0-mysql php7.0-fpm p
 # Install jq to modify composer.json
 RUN apt-get install jq -y
 
+# This needs to be ran again for mysql for some reason
+RUN apt-get update
+
+# Install mysql server so we can use wp-cli db bits
+# set default passwords for mysql
+# https://www.question-defense.com/2012/11/02/install-mysql-automatically-on-ubuntu
+RUN echo mysql-server mysql-server/root_password select rootpass | debconf-set-selections
+RUN echo mysql-server mysql-server/root_password_again select rootpass | debconf-set-selections
+# install mysql-server
+RUN apt-get install mysql-server -y
+
 WORKDIR /
 
 # Install dockerize
