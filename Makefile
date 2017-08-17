@@ -88,6 +88,10 @@ endif
 	${INFO} "Creating images..."
 	@ docker-compose -f $(COMPOSE_FILE) -f $(DEV_COMPOSE_FILE) build
 
+	${INFO} "Updating git-hooks..."
+	@ chmod u+x .hooks/pre-commit.sh
+	@ ln -s ../../.hooks/pre-commit.sh .git/hooks/pre-commit
+
 update-templates:
 	${INFO} "Updating templates..."
 	@ git submodule update --init --remote --merge
