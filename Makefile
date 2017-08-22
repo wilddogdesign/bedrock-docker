@@ -90,7 +90,7 @@ endif
 
 	${INFO} "Updating git-hooks..."
 	@ chmod u+x .hooks/pre-commit.sh
-	@ ln -s ../../.hooks/pre-commit.sh .git/hooks/pre-commit
+	@ if ! [ -L .git/hooks/pre-commit ]; then ln -s ../../.hooks/pre-commit.sh .git/hooks/pre-commit; fi
 
 update-templates:
 	${INFO} "Updating templates..."
