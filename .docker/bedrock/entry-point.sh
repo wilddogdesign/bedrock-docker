@@ -119,4 +119,7 @@ dockerize -wait tcp://$MYSQL_LOCAL_HOST ./init-wordpress.sh
 echo >&2 "Changing permissions..."
 chown -R www-data:www-data /var/www
 
+echo >&2 "Setting up sendmail..."
+echo -e "$(hostname -i)\t$(hostname) $(hostname).localhost" >> /etc/hosts
+
 exec "$@"

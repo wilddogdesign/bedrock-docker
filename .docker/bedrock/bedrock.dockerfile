@@ -15,7 +15,8 @@ RUN \
   apt-get update && apt-get upgrade -y
 
 # Basic Requirements
-RUN apt-get install -y git unzip wget python-pip gettext
+RUN apt-get update
+RUN apt-get install -y git unzip wget python-pip gettext sendmail
 
 # Install nGinx
 RUN \
