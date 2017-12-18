@@ -9,7 +9,6 @@ services:
       dockerfile: .docker/bedrock/bedrock.dockerfile
     depends_on:
       - db
-      - cache
     ports:
       - "80:80"
       - "443:443"
