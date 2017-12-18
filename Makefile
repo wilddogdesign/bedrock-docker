@@ -3,7 +3,7 @@ REPO_NAME ?= bedrock-docker
 
 TEMPLATES ?= git@github.com:wilddogdesign/puppy.git
 
-SERVER_NAME ?= docker.local.dev
+SERVER_NAME ?= docker.test
 
 BEDROCK_PATH := bedrock
 BEDROCK_REPO := roots/bedrock
@@ -59,9 +59,6 @@ endif
 
 	${INFO} "Creating development database volume..."
 	@ docker volume create --name $(PROJECT_NAME)-db
-
-	${INFO} "Creating development cache volume..."
-	@ docker volume create --name $(PROJECT_NAME)-cache
 
 	${INFO} "Resolving certificates..."
 ifeq ($(wildcard $(ROOT_DIR)/$(CERTIFICATE_KEY_FILE)),)

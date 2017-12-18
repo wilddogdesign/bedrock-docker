@@ -25,15 +25,6 @@ services:
     networks:
       - PROJECT_NAME-network
 
-  cache:
-    image: redis
-    volumes:
-      - PROJECT_NAME-cache:/var/lib/redis
-    expose:
-      - "6379"
-    networks:
-      - PROJECT_NAME-network
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     depends_on:
@@ -51,6 +42,4 @@ networks:
 
 volumes:
   PROJECT_NAME-db:
-    external: true
-  PROJECT_NAME-cache:
     external: true
