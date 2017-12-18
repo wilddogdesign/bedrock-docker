@@ -7,13 +7,13 @@ Prerequisites
 For this set-up to function, you will need these things installed:
 - Docker
 - docker-sync
-- unison (`brew install unison`)
-- Node.js with jspm, bower and yarn installed globally
+- unison, only if using with docker-sync (`brew install unison`)
+- Node.js with jspm and yarn installed globally
 
 Setting up
 ----------
-First of all, change the project settings in `Makefile` top variables from 'bedrock' to your chosen project name (this HAS to be unique for docker-sync to function properly). 
-By default, the repo comes with production and development stages. To start developing, you don't need to amend anything, but you can look into ./.docker/stages/env files and change accoring to your needs. 
+First of all, change the project settings in `Makefile` top variables from 'bedrock' to your chosen project name (this HAS to be unique for docker-sync to function properly).
+By default, the repo comes with production and development stages. To start developing, you don't need to amend anything, but you can look into ./.docker/stages/env files and change accoring to your needs.
 
 Running
 -------
@@ -29,5 +29,5 @@ Then, tun:
 ```
 make dev
 ```
-This will update and build the templates, and then launch docker-sync. 
-If everything is set-up properly, you can open https://docker.local.dev (map it to localhost in you hostfile, if you haven't changed it to something else in the env files).
+This will update and build the templates, and then launch docker-sync.
+If everything is set-up properly, you can open https://docker.test (map it to localhost in you hostfile, if you haven't changed it to something else in the env files).
