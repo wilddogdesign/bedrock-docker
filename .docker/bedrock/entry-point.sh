@@ -51,7 +51,7 @@ if ! [ -e .env.example -a -e composer.json ]; then
 EOT
     echo >&2 "Additional rules added"
 
-    composer require wpackagist-plugin/timber-library wpackagist-plugin/cmb2 --prefer-dist --optimize-autoloader
+    composer require wpackagist-plugin/timber-library --prefer-dist --optimize-autoloader
 
     echo >&2 "Done!"
 fi
