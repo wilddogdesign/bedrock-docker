@@ -77,10 +77,10 @@ endif
 ifeq ($(shell git submodule | grep templates),)
 	${INFO} "Hooking templates in..."
 	@ git submodule add $(TEMPLATES) templates
-	@ git submodule update --init --recursive
 else
 	${INFO} "Templates are already there"
 endif
+	@ git submodule update --init --recursive
 
 	${INFO} "Creating images..."
 	@ docker-compose -f $(COMPOSE_FILE) -f $(DEV_COMPOSE_FILE) build
