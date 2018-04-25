@@ -3,7 +3,7 @@ version: "2"
 services:
 
   bedrock:
-    image: bedrock
+    image: PROJECT_NAME-bedrock
     build:
       context: .
       dockerfile: .docker/bedrock/bedrock.dockerfile
