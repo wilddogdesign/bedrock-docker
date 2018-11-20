@@ -62,6 +62,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :service, :nginx, :reload
+      execute :sudo, :systemctl, :reload, "php7.1-fpm"
     end
   end
 end
