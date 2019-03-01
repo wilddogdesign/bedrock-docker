@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.22
+FROM phusion/baseimage:0.11
 
 MAINTAINER Misha Rumbesht <m.rumbesht@gmail.com>
 
@@ -39,11 +39,11 @@ VOLUME ["/etc/nginx/certs", "/var/www"]
 EXPOSE 80
 EXPOSE 443
 
-# Add php-7.0 ppa
+# Add php-7.3 ppa
 RUN LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php && apt-get update
 
 # Install php
-RUN apt-get install -y php7.0-cli php7.0-common php7.0 php7.0-mysql php7.0-fpm php7.0-curl php7.0-gd php7.0-bz2 php7.0-xml
+RUN apt-get install -y php7.3-cli php7.3-common php7.3 php7.3-mysql php7.3-fpm php7.3-curl php7.3-gd php7.3-bz2 php7.3-xml
 
 # Install jq to modify composer.json
 RUN apt-get install jq -y

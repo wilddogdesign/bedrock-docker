@@ -11,8 +11,8 @@ sed -i "s|_ENV_|$WP_ENV|g" /etc/nginx/nginx.conf
 # usermod -G staff www-data
 
 # Amend php config
-sed -i "s|listen = /run/php/php7.0-fpm.sock|listen = 9000|g" /etc/php/7.0/fpm/pool.d/www.conf
-sed -i "s|;listen.allowed_clients|listen.allowed_clients|g" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s|listen = /run/php/php7.3-fpm.sock|listen = 9000|g" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s|;listen.allowed_clients|listen.allowed_clients|g" /etc/php/7.3/fpm/pool.d/www.conf
 
 # Amend Wordpress init script
 sed -i "s|_WP_HOME_|$WP_HOME|g" /init-wordpress.sh
@@ -111,7 +111,7 @@ fi
 
 cd /
 
-/etc/init.d/php7.0-fpm start
+/etc/init.d/php7.3-fpm start
 
 dockerize -wait tcp://$MYSQL_LOCAL_HOST ./init-wordpress.sh
 
