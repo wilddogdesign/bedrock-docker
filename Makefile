@@ -16,10 +16,10 @@ CERTIFICATE_CRT_FILE := .certs/bedrock.pem
 CERTIFICATE_DHPARAM_FILE := .certs/dhparam.pem
 
 # Default deployment target
-TO := staging
+TO := development
 
 # Default deployment method ("flightplan" is the only other possible option)
-DEPLOY_WITH := capistrano
+DEPLOY_WITH := flightplan
 
 # Cosmetics
 YELLOW := "\e[1;33m"
@@ -107,8 +107,4 @@ dev: | update-templates launch
 
 deploy:
 	${INFO} "Deploying to: $(TO) using $(DEPLOY_WITH)"
-ifeq ($(DEPLOY_WITH),flightplan)
 	@ cd $(ROOT_DIR)/deploy && npm install && fly deploy:$(TO)
-else
-	@ cd $(ROOT_DIR)/deploy && bundle && cap $(TO) deploy
-endif
