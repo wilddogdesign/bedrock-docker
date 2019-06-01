@@ -13,7 +13,8 @@ const args = {
 };
 
 const linkedFiles = [
-  'bedrock/.env'
+  'bedrock/.env',
+  'bedrock/web/.htaccess'
 ];
 
 const linkedDirs = [
@@ -24,6 +25,9 @@ const linkedAssets = [
   'templates/dist/assets/css',
   'templates/dist/assets/js',
   'templates/dist/assets/icons',
+  'templates/dist/assets/favicons',
+  'templates/dist/assets/fonts',
+  'templates/dist/assets/images',
 ];
 
 const remoteTmpFolder = '/tmp';
@@ -31,31 +35,24 @@ const remoteTmpFolder = '/tmp';
 // configuration for development
 plan.target('development', {
   branch: 'staging',
-  host: 'wilddogdevelopment.com',
+  host: 'domain.com',
   projectRoot: `/Path/to/projects/${project}`,
   username: 'deployer',
   agent: process.env.SSH_AUTH_SOCK,
-  maxDeploys: 5
+  maxDeploys: 5,
+  port: '22',
 });
 
 // configuration for production
-// plan.target('production', {
-//   branch: 'master',
-//   host: 'domain.com',
-//   port: '12345',
-//   projectRoot: `/path/to/site/root`,
-//   username: 'user',
-//   agent: process.env.SSH_AUTH_SOCK,
-//   maxDeploys: 5
-// });
-
-// plan.target('production', {
-//   host: 'domain.com',
-//   projectRoot: `path/to/projects/${project}`,
-//   username: 'user',
-//   agent: process.env.SSH_AUTH_SOCK,
-//   maxDeploys: 5
-// });
+plan.target('production', {
+  branch: 'master',
+  host: 'domain.com',
+  port: '18765',
+  projectRoot: `/path/to/site/root`,
+  username: 'user',
+  agent: process.env.SSH_AUTH_SOCK,
+  maxDeploys: 5
+});
 
 const versionDir = `${project}-${new Date().getTime()}`;
 
