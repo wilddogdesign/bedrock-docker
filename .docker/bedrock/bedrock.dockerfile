@@ -40,7 +40,8 @@ EXPOSE 80
 EXPOSE 443
 
 # Add php-7.3 ppa
-RUN LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php && apt-get update
+RUN LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php
+RUN apt-get update
 
 # Install php
 RUN apt-get install -y php7.3-cli php7.3-common php7.3 php7.3-mysql php7.3-fpm php7.3-curl php7.3-gd php7.3-bz2 php7.3-xml
