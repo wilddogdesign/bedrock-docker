@@ -89,7 +89,7 @@ plan.local('deploy', local => {
   local.exec(`cd ../bedrock && composer install --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader`);
   local.log('Archive the needed folders');
   // local.exec(`mkdir -p .tmp/`);
-  local.exec(`cd ../ && tar -cvzf deploy/${versionDir}.tar.gz templates/dist/ bedrock/`);
+  local.exec(`cd ../ && tar -czf deploy/${versionDir}.tar.gz templates/dist/ bedrock/`);
   local.log('Copy files to remote hosts');
   // rsync files to all the target's remote hosts
   let tarFile = `${versionDir}.tar.gz`;
