@@ -94,7 +94,7 @@ update-templates:
 
 launch:
 	${INFO} "Launching..."
-	@ docker-compose up
+	@ docker-compose up -f docker-compose.yml -f docker-compose.development.yml
 
 dev: | update-templates launch
 
