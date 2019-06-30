@@ -1,12 +1,11 @@
-version: "2"
+version: '2'
 
 services:
-
   bedrock:
     volumes:
       - .certs:/etc/nginx/certs
-      - PROJECT_NAME-app-sync:/var/www:nocopy # will be mounted on /var/www
-      - PROJECT_NAME-templates-sync:/var/templates:nocopy # will be mounted on /var/templates
+      - bedrock:/var/www # will be mounted on /var/www
+      - templates:/var/templates # will be mounted on /var/templates
     env_file:
       - .docker/stages/dev/env/db.development.env
       - .docker/stages/dev/env/bedrock.development.env
@@ -16,9 +15,3 @@ services:
 
   phpmyadmin:
     env_file: .docker/stages/dev/env/db.development.env
-
-volumes:
-  PROJECT_NAME-app-sync:
-    external: true
-  PROJECT_NAME-templates-sync:
-    external: true
