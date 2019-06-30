@@ -4,8 +4,8 @@ services:
   bedrock:
     volumes:
       - .certs:/etc/nginx/certs
-      - bedrock:/var/www # will be mounted on /var/www
-      - templates:/var/templates # will be mounted on /var/templates
+      - ./bedrock:/var/www # will be mounted on /var/www
+      - ./templates:/var/templates # will be mounted on /var/templates
     env_file:
       - .docker/stages/dev/env/db.development.env
       - .docker/stages/dev/env/bedrock.development.env
@@ -15,9 +15,3 @@ services:
 
   phpmyadmin:
     env_file: .docker/stages/dev/env/db.development.env
-
-volumes:
-  bedrock:
-    external: true
-  templates:
-    external: true
