@@ -15,3 +15,9 @@ services:
 
   phpmyadmin:
     env_file: .docker/stages/dev/env/db.development.env
+
+volumes:
+  bedrock:
+    external: true
+  templates:
+    external: true

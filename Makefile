@@ -50,13 +50,6 @@ else
 	${INFO} "$(DEV_COMPOSE_FILE) exists"
 endif
 
-ifeq ($(wildcard $(ROOT_DIR)/docker-sync.yml),)
-	${INFO} "Creating docker-sync.yml ..."
-	@ sed "s|PROJECT_NAME|$(PROJECT_NAME)|g" < .docker/stages/dev/docker-compose/docker-sync.yml > docker-sync.yml
-else
-	${INFO} "docker-sync.yml exists"
-endif
-
 	${INFO} "Creating development database volume..."
 	@ docker volume create --name $(PROJECT_NAME)-db
 
@@ -101,7 +94,7 @@ update-templates:
 
 launch:
 	${INFO} "Launching..."
-	@ docker-sync-stack start
+	@ docker-compose up
 
 dev: | update-templates launch
 
