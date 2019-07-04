@@ -33,7 +33,7 @@ COPY .docker/stages/dev/nginx/bedrock.nginx.conf /tmp/nginx.conf
 RUN mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 # Define mountable directories.
-VOLUME ["/etc/nginx/certs", "/var/www"]
+VOLUME ["/etc/nginx/certs", "/var/www", "/var/templates"]
 
 # Expose ports.
 EXPOSE 80
