@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 
 services:
   bedrock:
@@ -12,6 +12,8 @@ services:
 
   db:
     env_file: .docker/stages/dev/env/db.development.env
+    ports:
+      - "3306:3306"
 
   phpmyadmin:
     env_file: .docker/stages/dev/env/db.development.env
