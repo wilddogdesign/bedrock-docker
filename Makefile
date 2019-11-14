@@ -16,7 +16,7 @@ CERTIFICATE_CRT_FILE := .certs/bedrock.pem
 CERTIFICATE_DHPARAM_FILE := .certs/dhparam.pem
 
 # Default deployment target
-TO := development
+TO := staging
 
 # Default deployment method ("flightplan" is the only other possible option)
 DEPLOY_WITH := flightplan
@@ -87,7 +87,7 @@ update-templates:
 	@ git submodule update --init --remote --merge
 
 	${INFO} "Getting templates dependencies..."
-	@ cd $(ROOT_DIR)/templates && npm run setup
+	@ cd $(ROOT_DIR)/templates && npm install --production && git checkout package-lock.json
 
 	${INFO} "Building project"
 	@ cd $(ROOT_DIR)/templates && npm run build
