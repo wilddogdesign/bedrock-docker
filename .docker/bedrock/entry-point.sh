@@ -108,6 +108,15 @@ fi
 if ! [ -e icons ]; then
     ln -s /var/templates/dist/assets/icons
 fi
+if ! [ -e favicons ]; then
+    ln -s /var/templates/dist/assets/favicons
+fi
+if ! [ -e images ]; then
+    ln -s /var/templates/dist/assets/images
+fi
+if ! [ -e fonts ]; then
+    ln -s /var/templates/dist/assets/fonts
+fi
 
 cd /
 
