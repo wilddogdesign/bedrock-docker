@@ -4,3 +4,5 @@
 bedrock/web/app/themes/bedrock-theme/static/css
 bedrock/web/app/themes/bedrock-theme/static/icons
 bedrock/web/app/themes/bedrock-theme/static/js
+
+.DS_Store

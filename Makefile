@@ -87,7 +87,7 @@ update-templates:
 	@ git submodule update --init --remote --merge
 
 	${INFO} "Getting templates dependencies..."
-	@ cd $(ROOT_DIR)/templates && npm install --production && git checkout package-lock.json
+	@ cd $(ROOT_DIR)/templates && npm run build && git checkout package-lock.json
 
 	${INFO} "Building project"
 	@ cd $(ROOT_DIR)/templates && npm run build
