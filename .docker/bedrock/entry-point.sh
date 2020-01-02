@@ -90,7 +90,7 @@ cd /var/www/web/app/themes
 
 if ! [ -d "$WP_THEME" ]; then
     echo >&2 "Theme doesn't exist. Downloading..."
-    git clone https://github.com/timber/starter-theme.git $WP_THEME && \
+    git clone https://github.com/wilddogdesign/starter-theme.git $WP_THEME && \
     cd $WP_THEME && \
     rm -Rf tests/ bin/ .git/ static/site.js .gitignore .travis.yml phpunit.xml composer.json composer.lock
     echo >&2 "Done!"
