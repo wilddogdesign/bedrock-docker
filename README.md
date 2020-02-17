@@ -7,8 +7,6 @@ Dockerified Bedrock setup helped out by docker-sync
 For this set-up to function, you will need these things installed:
 
 - Docker
-- docker-sync
-- unison, only if using with docker-sync (`brew install unison`)
 - Node.js with jspm and yarn installed globally
 
 ## Setting up
