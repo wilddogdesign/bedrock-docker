@@ -2,7 +2,10 @@
 .certs/*.pem
 
 bedrock/web/app/themes/bedrock-theme/static/css
+bedrock/web/app/themes/bedrock-theme/static/favicons
+bedrock/web/app/themes/bedrock-theme/static/fonts
 bedrock/web/app/themes/bedrock-theme/static/icons
+bedrock/web/app/themes/bedrock-theme/static/images
 bedrock/web/app/themes/bedrock-theme/static/js
 
 .DS_Store
