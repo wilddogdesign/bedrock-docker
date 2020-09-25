@@ -33,7 +33,7 @@ INFO := @bash -c '\
 
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: deploy dev launch setup update-templates
+.PHONY: deploy dev launch setup update-templates link-assets update-plugins work
 
 setup:
 ifeq ($(wildcard $(ROOT_DIR)/$(COMPOSE_FILE)),)
@@ -92,6 +92,8 @@ update-templates:
 	${INFO} "Building project"
 	@ cd $(ROOT_DIR)/templates && npm run build
 
+ut: | update-templates
+
 launch:
 	${INFO} "Launching..."
 	@ docker-compose -f $(COMPOSE_FILE) -f $(DEV_COMPOSE_FILE) up
@@ -101,3 +103,28 @@ dev: | update-templates launch
 deploy:
 	${INFO} "Deploying to: $(TO) using $(DEPLOY_WITH)"
 	@ cd $(ROOT_DIR)/deploy && npm install && fly deploy:$(TO)
+
+link-assets:
+	${INFO} "Linking assets..."
+	@ cd $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/css $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/css
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/favicons $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/favicons
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/fonts $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/fonts
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/icons $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/icons
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/images $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/images
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/js $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/js
+
+la: | link-assets
+
+update-plugins:
+	${INFO} "Updating composer packages and plugins"
+	@ cd $(ROOT_DIR)/bedrock && composer up --no-dev --prefer-dist --no-interaction --optimize-autoloader
+
+up: | update-plugins
+
+work:
+	$(MAKE) update-templates
+	$(MAKE) link-assets
+	$(MAKE) update-plugins
+	${INFO} "Ready to rock and roll..."
+	@ open http://$(REPO_NAME).test
