@@ -33,7 +33,7 @@ INFO := @bash -c '\
 
 ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: deploy dev launch setup update-templates link-assets update-plugins work
+.PHONY: deploy dev launch setup update-templates link-assets setup-env update-plugins valet-link work
 
 setup:
 ifeq ($(wildcard $(ROOT_DIR)/$(COMPOSE_FILE)),)
@@ -122,9 +122,23 @@ update-plugins:
 
 up: | update-plugins
 
+setup-env:
+ifeq ($(wildcard $(ROOT_DIR)/bedrock/.env),)
+	${INFO} "Creating ENV file..."
+	@ cd $(ROOT_DIR)/bedrock && cp .env.example .env
+else
+	${INFO} ".env exists"
+endif
+
+valet-link:
+	${INFO} "Setup Valet link..."
+	@ cd $(ROOT_DIR)/bedrock/web && valet link $(REPO_NAME)
+
 work:
 	$(MAKE) update-templates
 	$(MAKE) link-assets
 	$(MAKE) update-plugins
+	$(MAKE) setup-env
+	$(MAKE) valet-link
 	${INFO} "Ready to rock and roll..."
 	@ open http://$(REPO_NAME).test
