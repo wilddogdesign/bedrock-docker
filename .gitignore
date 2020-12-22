@@ -7,5 +7,6 @@ bedrock/web/app/themes/bedrock-theme/static/fonts
 bedrock/web/app/themes/bedrock-theme/static/icons
 bedrock/web/app/themes/bedrock-theme/static/images
 bedrock/web/app/themes/bedrock-theme/static/js
+bedrock/web/app/themes/bedrock-theme/static/json
 
 .DS_Store

@@ -90,7 +90,7 @@ update-templates:
 	@ cd $(ROOT_DIR)/templates && npm run setup && git checkout package-lock.json
 
 	${INFO} "Building project"
-	@ cd $(ROOT_DIR)/templates && npm run build
+	@ cd $(ROOT_DIR)/templates && npm run build:bedrock
 
 ut: | update-templates
 
@@ -113,6 +113,7 @@ link-assets:
 	@ ln -snf $(ROOT_DIR)/templates/dist/assets/icons $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/icons
 	@ ln -snf $(ROOT_DIR)/templates/dist/assets/images $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/images
 	@ ln -snf $(ROOT_DIR)/templates/dist/assets/js $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/js
+	@ ln -snf $(ROOT_DIR)/templates/dist/assets/js $(ROOT_DIR)/bedrock/web/app/themes/bedrock-theme/static/json
 
 la: | link-assets
 

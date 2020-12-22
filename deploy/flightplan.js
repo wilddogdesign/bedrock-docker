@@ -22,7 +22,8 @@ const linkedAssets = [
   "templates/dist/assets/icons",
   "templates/dist/assets/favicons",
   "templates/dist/assets/fonts",
-  "templates/dist/assets/images"
+  "templates/dist/assets/images",
+  "templates/dist/assets/json",
 ];
 
 const remoteTmpFolder = "/tmp";
@@ -92,7 +93,7 @@ plan.local("deploy", local => {
 
   local.log("Run templates build");
   local.exec(
-    `cd ../templates && npm run build -- ${
+    `cd ../templates && npm run build:bedrock -- ${
       args.minify ? "" : " --no-minification"
     } ${args.critical ? "" : " --no-critical-css"}`
   );
