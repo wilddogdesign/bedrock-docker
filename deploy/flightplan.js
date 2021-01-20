@@ -106,7 +106,7 @@ plan.local("deploy", local => {
   local.log("Archive the needed folders");
   // local.exec(`mkdir -p .tmp/`);
   local.exec(
-    `cd ../ && tar --exclude='./bedrock/web/app/uploads' -czf deploy/${versionDir}.tar.gz templates/dist/ bedrock/`
+    `cd ../ && tar --exclude='./bedrock/web/app/uploads' --exclude='*.log' --exclude='./templates/dist/assets/example-images' -czf deploy/${versionDir}.tar.gz templates/dist/ bedrock/`
   );
 
   local.log("Copy files to remote hosts");
