@@ -1,0 +1,44 @@
+version: "2"
+
+services:
+
+  bedrock:
+    image: canvas-travel-cms-bedrock
+    build:
+      context: .
+      dockerfile: .docker/bedrock/bedrock.dockerfile
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - canvas-travel-cms-network
+
+  db:
+    image: mariadb
+    volumes:
+      - canvas-travel-cms-db:/var/lib/mysql
+    expose:
+      - "3306"
+    networks:
+      - canvas-travel-cms-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    links:
+      - db:mysql
+    networks:
+      - canvas-travel-cms-network
+
+networks:
+  canvas-travel-cms-network:
+    driver: bridge
+
+volumes:
+  canvas-travel-cms-db:
+    external: true
