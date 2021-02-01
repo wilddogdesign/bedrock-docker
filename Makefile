@@ -1,7 +1,7 @@
-PROJECT_NAME ?= canvas-travel-cms
-REPO_NAME ?= canvas-travel-cms
+PROJECT_NAME ?= bedrock
+REPO_NAME ?= bedrock-docker
 
-TEMPLATES ?= git@github.com:wilddogdesign/canvas-travel.git
+TEMPLATES ?= git@github.com:wilddogdesign/puppy.git
 
 SERVER_NAME ?= docker.test
 

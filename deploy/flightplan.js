@@ -1,7 +1,7 @@
 "use strict";
 
 const plan = require("flightplan");
-const project = "canvas-travel-cms";
+const project = "bedrock";
 
 var user = "Someone";
 
