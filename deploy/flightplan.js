@@ -171,6 +171,11 @@ plan.remote("deploy", remote => {
     );
   });
 
+  remote.log('Link service worker');
+  remote.exec(
+    `cd ${remote.runtime.projectRoot}/releases/${versionDir}/bedrock/web/ && ln -snf ${remote.runtime.projectRoot}/releases/${versionDir}/templates/dist/service-worker.js `
+  );
+
   remote.log("Point to current version");
   remote.exec(
     `cd ${remote.runtime.projectRoot} && rm -f current && ln -snf ${
