@@ -117,6 +117,9 @@ link-assets:
 
 la: | link-assets
 
+link-sw:
+	@ ln -snf $(ROOT_DIR)/templates/dist/service-worker.js $(ROOT_DIR)/bedrock/web/service-worker.js
+
 update-plugins:
 	${INFO} "Updating composer packages and plugins"
 	@ cd $(ROOT_DIR)/bedrock && composer up --no-dev --prefer-dist --no-interaction --optimize-autoloader
