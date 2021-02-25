@@ -31,9 +31,9 @@ const remoteTmpFolder = "/tmp";
 // configuration for staging (development)
 plan.target("staging", {
   branch: "staging",
-  host: "wilddogdevelopment.com",
-  projectRoot: `/var/www/${project}`,
-  username: "deployer",
+  host: "wilddog.dev",
+  projectRoot: `~/${project}.wilddog.dev`,
+  username: "forge",
   agent: process.env.SSH_AUTH_SOCK,
   maxDeploys: 5,
   port: 2022
@@ -197,18 +197,8 @@ plan.remote("deploy", remote => {
   // Restart php on staging server
   if (["staging", "development"].includes(plan.runtime.target)) {
     remote.log("Update PHP");
-    remote.exec("sudo systemctl reload php7.3-fpm");
-  } else {
-    remote.log("Remote In Production");
+    remote.exec('sudo service php7.4-fpm reload');
   }
-
-  remote.exec(
-    `curl -X POST --data-urlencode 'payload={"channel": "#deployments", "username": "deploybot", "text": "${
-      user.stdout
-    } has just deployed *${project}* project to <http://${
-      remote.runtime.host
-    }|its *production* server>", "icon_emoji": ":shipit:"}' https://hooks.slack.com/services/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`
-  );
 });
 
 plan.remote("rollback", remote => {
